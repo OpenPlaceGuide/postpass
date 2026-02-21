@@ -1,4 +1,10 @@
-# Postpass
+# Postpass OMT OpenPlaceGuide
+
+Examle:
+
+https://africa.postpass-omt.openplaceguide.org/interpreter?data=SELECT%20*%20FROM%20osm_poi_point%20LIMIT%201;
+
+## Original Postpass Readme
 
 A simple wrapper around PostGIS that allows random people on the
 internet to run PostGIS queries without ruining everything
