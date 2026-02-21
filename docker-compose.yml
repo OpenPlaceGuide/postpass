@@ -7,7 +7,7 @@ services:
       - "traefik.http.services.etpostpass.loadbalancer.server.port=8081"
       - "traefik.http.routers.etpostpass.service=etpostpass"
       - "traefik.http.routers.etpostpass.tls=true"
-      - "traefik.http.routers.etpostpass.tls.certresolver=etpostpass"
+      - "traefik.http.routers.etpostpass.tls.certresolver=opg"
     networks:
       - openmaptiles_conn
     restart: unless-stopped

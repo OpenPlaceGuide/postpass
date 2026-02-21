@@ -4,7 +4,7 @@ package postpass
  * should go into commandline arguments
  */
 const (
-	Host                 = "localhost"
+	Host                 = "openmaptiles_postgres_1"
 	Port                 = 5432
 	User                 = "readonly"
 	Password             = "readonly"
