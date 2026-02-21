@@ -1,0 +1,19 @@
+services:
+  postpass:
+    build: .
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.etpostpass.rule=(Host(`africa.postpass-omt.openplaceguide.org`))"
+      - "traefik.http.services.etpostpass.loadbalancer.server.port=8081"
+      - "traefik.http.routers.etpostpass.service=etpostpass"
+      - "traefik.http.routers.etpostpass.tls=true"
+      - "traefik.http.routers.etpostpass.tls.certresolver=etpostpass"
+    networks:
+      - openmaptiles_conn
+    restart: unless-stopped
+
+networks:
+  openmaptiles_conn:
+    external: true
+    name: openmaptiles_postgres
+    driver: bridge
