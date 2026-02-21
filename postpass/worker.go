@@ -53,7 +53,7 @@ func Worker(db *sql.DB, id int, tasks <-chan WorkItem) {
 
             rows, err = db.QueryContext(taskCtx, 
                 `SELECT jsonb_build_object(
-                    'timestamp', (select value from osm2pgsql_properties where property='replication_timestamp'),
+                    'timestamp', 'recent',
                     'generator', 'Postpass API 0.2'
                  )`)
 
@@ -115,7 +115,7 @@ func Worker(db *sql.DB, id int, tasks <-chan WorkItem) {
                     `SELECT json_build_object(
                         'type', 'FeatureCollection',
                         'properties', jsonb_build_object(
-                           'timestamp', (select value from osm2pgsql_properties where property='replication_timestamp'),
+                           'timestamp', 'recent',
                            'generator', 'Postpass API 0.2'
                            ),
                         'features', coalesce(jsonb_agg(ST_AsGeoJSON(t.*)::json), '[]'::jsonb))
@@ -129,7 +129,7 @@ func Worker(db *sql.DB, id int, tasks <-chan WorkItem) {
                 rows, err = db.QueryContext(taskCtx, fmt.Sprintf(
                     `SELECT jsonb_pretty(jsonb_build_object(
                         'metadata', jsonb_build_object(
-                           'timestamp', (select value from osm2pgsql_properties where property='replication_timestamp'),
+                           'timestamp', 'recent',
                            'generator', 'Postpass API 0.2'
                            ),
                         'result', jsonb_agg(t.*)::jsonb))
